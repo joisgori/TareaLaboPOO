@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  * @author josue
  */
 public class Ventana extends JPanel {
-
+    
     public int WIDTH = 600, widthTF = 150, widthB = 50;
     public int HEIGHT = 300, heightTF = 30, heightB = 30;
     public JTextField textF1, textF2, textF3, textF4;
@@ -32,59 +32,64 @@ public class Ventana extends JPanel {
     
     public Ventana() {
         textF1 = new JTextField();
-        textF1.setBounds(new Rectangle(70, 20, widthTF, heightTF));
+        textF1.setBounds(new Rectangle(70, 30, widthTF, heightTF));
 
         //Campo de texto donde mostraré la respuesta
         textF2 = new JTextField();
-        textF2.setBounds(new Rectangle(70, 215, widthTF, heightTF));
-
+        textF2.setBounds(new Rectangle(70, 225, widthTF, heightTF));
+        
         textF3 = new JTextField();
-        textF3.setBounds(new Rectangle(70, 60, widthTF, heightTF));
+        textF3.setBounds(new Rectangle(70, 70, widthTF, heightTF));
 
         //Agregué otro campo, donde este funcionará solo para la conversión;        
         textF4 = new JTextField();
-        textF4.setBounds(new Rectangle(250, 20, widthTF, heightTF));
-
+        textF4.setBounds(new Rectangle(300, 30, widthTF, heightTF));
+        
         buttonS = new JButton("+");
-        buttonS.setBounds(new Rectangle(70, 115, widthB, heightB));
-
+        buttonS.setBounds(new Rectangle(70, 125, widthB, heightB));
+        
         buttonR = new JButton("-");
-        buttonR.setBounds(new Rectangle(125, 115, widthB, heightB));
-
+        buttonR.setBounds(new Rectangle(125, 125, widthB, heightB));
+        
         buttonM = new JButton("*");
-        buttonM.setBounds(new Rectangle(70, 150, widthB, heightB));
-
+        buttonM.setBounds(new Rectangle(70, 160, widthB, heightB));
+        
         buttonD = new JButton("/");
-        buttonD.setBounds(new Rectangle(125, 150, widthB, heightB));
+        buttonD.setBounds(new Rectangle(125, 160, widthB, heightB));
 
         //Agrego el botón que funcionará para realizar la conversión a binario.
         buttonCb = new JButton("Binario");
-        buttonCb.setBounds(new Rectangle(250, 125, 100, heightB));
+        buttonCb.setBounds(new Rectangle(300, 135, 100, heightB));
 
         //La misma lógica de las cajitas de texto :y 
         resultado = new JLabel("Resultado: ");
         //lblPrueba.setBounds(200, 250, 130, heightB);
         //Es independiente la manera en que se coloquen las coordenadas, ya sea con rectángulo o sin rectángulo
-        resultado.setBounds(new Rectangle(20, 185, 78, heightB));
+        resultado.setBounds(new Rectangle(20, 195, 78, heightB));
         //----------------------------------------------------------------------
+        titAritm = new JLabel("Operadores aritméticos:");
+        titAritm.setBounds(new Rectangle(20, 1, 150, heightB));
+        
+        titConver = new JLabel("Operación conversión:");
+        titConver.setBounds(new Rectangle(250, 1, 150, heightB));
+        
         textF1.setEditable(true);
         textF3.setEditable(true);
         textF4.setEditable(true);
         textF2.setEditable(false);
-        
+
         //Agregar color al fondo:
         //h.setBackground(Color.RED);
-        
         buttonS.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 // textF2.setText(textF1.getText());
                 AbstractFactory factory = FactoryProducer.getFactory("aritmetico");
                 textF2.setText(Integer.toString(factory.getAritmetica("suma").TomarDigitos(Integer.parseInt(textF1.getText()), Integer.parseInt(textF3.getText()))));
-
+                
             }
         });
-
+        
         buttonR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,7 +99,7 @@ public class Ventana extends JPanel {
                 textF2.setText(Integer.toString(factory.getAritmetica("resta").TomarDigitos(Integer.parseInt(textF1.getText()), Integer.parseInt(textF3.getText()))));
             }
         });
-
+        
         buttonM.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,7 +110,7 @@ public class Ventana extends JPanel {
                 textF2.setText(Integer.toString(factory.getAritmetica("multiplicacion").TomarDigitos(Integer.parseInt(textF1.getText()), Integer.parseInt(textF3.getText()))));
             }
         });
-
+        
         buttonD.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,7 +122,7 @@ public class Ventana extends JPanel {
                 textF2.setText(Integer.toString(factory.getAritmetica("division").TomarDigitos(Integer.parseInt(textF1.getText()), Integer.parseInt(textF3.getText()))));
             }
         });
-
+        
         buttonCb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,10 +132,10 @@ public class Ventana extends JPanel {
                 //luego de saber qué operación ejecutará (para el caso binario) necesito transformar los dígitos enteros en string con este código.
                 //en el factory ya no mando a getarimética, sino a getconversion
                 textF2.setText(factory.getConversion("binario").tomarDigito(Integer.parseInt(textF4.getText())));
-
+                
             }
         });
-
+        
         add(textF1);
         add(textF3);
         add(buttonS);
@@ -140,9 +145,12 @@ public class Ventana extends JPanel {
         add(buttonCb);
         add(textF2);
         add(textF4);
+        //Agregarán el texto predeterminado a la interfaz gráfica:
         add(resultado);
+        add(titAritm);
+        add(titConver);
         setLayout(null);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
-
+    
 }
