@@ -25,6 +25,8 @@ public class FactoryConversion extends AbstractFactory {
         switch (tipo){
             case "binario":
                 return new Binario(); //estoy retornando un nuevo objeto.
+            case "hexadecimal":
+                return new Hexadecimal();
         }
         return null; //y agrego el nulo en caso de que no sea ninguno de estos.
     }

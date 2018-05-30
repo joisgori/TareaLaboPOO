@@ -23,11 +23,14 @@ public class Binario implements Conversion {
             bin = bin + temp;
 
         }
+        
         bin = bin + a;
         
-        for(int i = bin.length(); bin.length() > 0; i--){
-            CadenaSalida = CadenaSalida + bin.charAt(i);
+        for(int i = bin.length()-1; i>=0; i--){
+            CadenaSalida = CadenaSalida + Character.toString(bin.charAt(i));
         }
+        
+        
 
         return CadenaSalida;
     }
