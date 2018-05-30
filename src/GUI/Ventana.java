@@ -23,7 +23,7 @@ import javax.swing.JTextField;
  */
 public class Ventana extends JPanel {
     
-    public int WIDTH = 600, widthTF = 150, widthB = 50;
+    public int WIDTH = 500, widthTF = 150, widthB = 50;
     public int HEIGHT = 300, heightTF = 30, heightB = 30;
     public JTextField textF1, textF2, textF3, textF4;
     public JButton buttonS, buttonR, buttonM, buttonD, buttonCb;
